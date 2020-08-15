@@ -1,11 +1,11 @@
 # Ballot Box
-An Lightning Web Component App for a Voting Titles among a Team. Exposed as a Public Site.
+An Lightning Web Component App for carrying out Voting among a Team. Exposed as a Public Site in Salesforce
 
 ---
 
 ## App Highlights
 
-The App provisions an Admin to create a Team in with the relevant Candidates who can Vote among themselves on Team Titles- All built on Salesforce!
+The App provisions an Admin to create a Team with relevant Candidates who can Vote among themselves on Titles- All built on Salesforce!
 
 This App, when exposed as a public Salesforce Site, allows Users to cast their Vote using their configured Email Id in the Candidate records, without any Login hassle! 
 
@@ -21,27 +21,35 @@ The pre-built Voting rules are -
 - Voter cannot vote for oneself in any of the Titles
 - Few Titles may have a pre-filtered list of *Nominees*, others will display all the Team Members
 
-Our recommended Method is to share the Public Salesfore Site URL with the Users all at once to ensure Simultaneous Votes are being cast and the Salesforce Admin can then View the results on the WALL OF FAME Dashboard.
+Our recommended Method is to share the Public Salesfore Site URL with the Users all at once to ensure Simultaneous Votes are being cast and the Salesforce Admin can then view the results in a Wall of Fame Ballot Box Dashboard as shown below - 
 
 ![](.images/DashboardWallOfFame.png)
 
+---
 
-The Setup steps are very simple - 
-- Either Install this Unmanaged Package into your Salesforce Org, or follow below Deployment Steps
-- Configure the Salesforce Site in your Salesforce Org and instructed below
-- Create Data Records - Team , All Team Candidates, All Team Titles as shown below- 
+## Installation & Site Setup
+
+The Setup steps are as below- 
+1. Either Install [this Unmanaged Package](https://www.google.com) into your Salesforce Org, or follow below Deployment Steps.
+2. In App Launcher, select the **Ballot Box** app to view the Tab contents and create a Team record first, followed by Titles and Candidates. Remember to create Team Candidate records with a Unique Email ID that they will use in the Public Site (created above) to determine their voter identity.
+3. Create Data Records - Team , All Team Candidates, All Team Titles as shown below- 
 
 ![](.images/TitlesListView.png)
 
 ![](.images/CandidateForm.png)
 
 
-- If needed, you can create few Nominee records under the Titles so that only they show up as options during Voting and not All the Team Candidates. If no nominees created, then by default, All Candidates will be in the options list for That Title.
+4. If needed, you can create few Nominee records under the Titles so that only they show up as options during Voting and not All the Team Candidates. If no nominees created, then by default, All Candidates will be in the options list for That Title.
+5. You can preview how your configured data looks to an end user (Voter) in the **Vote Now!** tab
+6. As an Admin, Configure the Salesforce Site in your Salesforce Org as instructed separately below.
+7. Once Site is configured, you can share the Site Link with Voters and let the fun begin !
 
----
+###  Site Setup
 
-## Deployment & Site Setup
-Kindly follow these steps to deploy the contents of this repository in your Developer Edition Org or a Sandbox.
+
+### Deployment
+
+If Unable to Install the unmanaged package, then you can deploy the contents of this repository in your Developer Edition Org or a Sandbox-
 
 1. Clone this repository in your local machine:
 
@@ -69,15 +77,13 @@ Kindly follow these steps to deploy the contents of this repository in your Deve
 
     ```
 
-1. (Site Setup Instructions here)
-
-1. In App Launcher, select the **Ballot Box** app to view the contents and set up a Team first, followed by Titles and Candidates. Remember -  create Team Candidate records with a Unique Email ID that they will use in the Public Site (created above) to determine their voter identity.
+1. Post deployment, you can configure the Salesforce Site and the Records as instructed above and let the voting begin!
 
 ---
 
 ## Authors
 
-* **Waseem Ali Sabeel** - *Initial components* - [@WaseemAliSabeel](https://github.com/WaseemAliSabeel) :cowboy_hat_face:
+* **Waseem Ali Sabeel** - *Ballot Box components* - [@WaseemAliSabeel](https://github.com/WaseemAliSabeel) :cowboy_hat_face:
 
 ---
 
