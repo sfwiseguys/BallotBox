@@ -1,12 +1,14 @@
-# Ballot Box
+## Ballot Box
+
 A Lightning Web Component App for carrying out Voting among a Team. Exposed as a Public Site in Salesforce
 ---
 
 ## App Highlights
 
-The App provisions an Admin to create a Team with relevant Candidates who can Vote among themselves on Titles- All built on Salesforce!
+This fun App provisions an Admin to create a Team with relevant Candidates who can Vote among themselves on Titles-
+All built on Salesforce!
 
-This App, when exposed as a public Salesforce Site, allows Users to cast their Vote using their configured Email Id in the Candidate records, without any Login hassle! 
+This App, when exposed as a public Salesforce Site, allows Users to cast their Vote using their configured Email Id in the Candidate records, *without any Login hassle!*
 
 ![](.images/BallotBoxSite.png)
 
