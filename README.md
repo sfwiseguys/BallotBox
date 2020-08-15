@@ -5,19 +5,38 @@ An Lightning Web Component App for a Voting Titles among a Team. Exposed as a Pu
 
 ## App Highlights
 
-(app images here)
+The App provisions an Admin to create a Team in with the relevant Candidates who can Vote among themselves on Team Titles- All built on Salesforce!
+
+This App, when exposed as a public Salesforce Site, allows Users to cast their Vote using their configured Email Id in the Candidate records, without any Login hassle! 
+
 ![](.images/BallotBoxSite.png)
 
-second below
-![](BallotBoxSite.png)
+![](.images/IronManVote.png)
+
+![](.images/NickFuryVote.png)
 
 
-third below
-![](images/BallotBoxSite.png)
+The pre-built Voting rules are - 
+- Voter can cast only one Vote per Title
+- Voter cannot vote for oneself in any of the Titles
+- Few Titles may have a pre-filtered list of *Nominees*, others will display all the Team Members
+
+Our recommended Method is to share the Public Salesfore Site URL with the Users all at once to ensure Simultaneous Votes are being cast and the Salesforce Admin can then View the results on the WALL OF FAME Dashboard.
+
+![](.images/DashboardWallOfFame.png)
 
 
-fourth below
-![](/images/BallotBoxSite.png)
+The Setup steps are very simple - 
+- Either Install this Unmanaged Package into your Salesforce Org, or follow below Deployment Steps
+- Configure the Salesforce Site in your Salesforce Org and instructed below
+- Create Data Records - Team , All Team Candidates, All Team Titles as shown below- 
+
+![](.images/TitlesListView.png)
+
+![](.images/CandidateForm.png)
+
+
+- If needed, you can create few Nominee records under the Titles so that only they show up as options during Voting and not All the Team Candidates. If no nominees created, then by default, All Candidates will be in the options list for That Title.
 
 ---
 
