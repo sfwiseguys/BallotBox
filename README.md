@@ -6,6 +6,18 @@ An Lightning Web Component App for a Voting Titles among a Team. Exposed as a Pu
 ## App Highlights
 
 (app images here)
+![](.images/BallotBoxSite.png)
+
+second below
+![](BallotBoxSite.png)
+
+
+third below
+![](images/BallotBoxSite.png)
+
+
+fourth below
+![](/images/BallotBoxSite.png)
 
 ---
 
