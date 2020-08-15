@@ -1,0 +1,14 @@
+<apex:page showHeader="false">
+    <apex:includeLightning />
+    <div id="lightningvf" />
+    <script>
+        $Lightning.use("c:wbb_voteapp", function() {
+          $Lightning.createComponent("c:wbb_votenow",{},
+              "lightningvf",
+              function(cmp) {
+              console.log("### Stop Reading console logs. Go Vote !");
+              }
+          );
+        });
+    </script>
+</apex:page>

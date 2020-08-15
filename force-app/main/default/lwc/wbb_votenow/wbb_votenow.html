@@ -1,0 +1,251 @@
+<template>
+    <!-- Spinner -->
+    <template if:true={loading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+    </template>
+    <lightning-layout multiple-rows="true" horizontal-align="center">
+        <lightning-layout-item size="12" class="fullbg dark-bg">
+
+            <!-- Header Starts-->
+            <lightning-layout multiple-rows="true" horizontal-align="center"
+                class="slds-text-color_inverse lgc-bg-inverse">
+                <lightning-layout-item size="10" flexibility="auto">
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item size="3" padding="around-small">
+                            <img src="https://www.austinchronicle.com/binary/77b8/GettyImages-1127805973.jpg"
+                                height="120" width="150" alt="Vote Image here"></img>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="8" padding="around-small">
+                            <h1 class="slds-hyphenate slds-text-heading_large">Welcome
+                                to Ballot Box
+                            </h1>
+                            <p class="slds-text-heading_small slds-hyphenate slds-m-top_medium">
+                                Vote for your Team Mates
+                                from the list of designated Titles !</p>
+                            <p class="slds-text-heading_small slds-hyphenate">
+                                Voter
+                                can cast only
+                                one Vote per Title</p>
+                            <p class="slds-text-heading_small slds-hyphenate">
+                                Voter
+                                cannot vote for oneself</p>
+                            <p class="slds-text-heading_small slds-hyphenate">
+                                Few
+                                Titles may
+                                have a pre-filtered list of Nominees, others will display all the Team
+                                Members
+                            </p>
+                            <p class="slds-text-heading_small slds-hyphenate">At
+                                the
+                                end
+                                of voting,
+                                Admin gathers the results and the WALL OF FAME will be shared with all</p>
+                            <p class="slds-text-heading_small slds-hyphenate slds-m-top_small">
+                                Let the Fun begin
+                                !!!<span>
+                                    <lightning-dynamic-icon type="eq" option="play" alternative-text="Go Vote!">
+                                    </lightning-dynamic-icon>
+                                </span></p>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="1">
+                            <div class="slds-p-around_medium">
+                                <lightning-button-icon icon-name="utility:topic" alternative-text="Toggle Mode"
+                                    variant="border-inverse" onclick={togglemode}></lightning-button-icon>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout>
+            <!-- Header Ends -->
+
+            <!-- Error panel Starts -->
+            <lightning-layout multiple-rows="true" horizontal-align="center">
+                <lightning-layout-item size="9" flexibility="auto" padding="around-medium">
+                    <template if:true={loaderror}>
+                        <div class="slds-text-heading_small slds-box slds-theme_error">
+                            <p class="slds-text-align_center">{loaderror}</p>
+                        </div>
+                    </template>
+
+                    <template if:true={incorrectemail}>
+                        <div class="slds-text-heading_small slds-box slds-theme_error">
+                            <p class="slds-text-align_center">Please Enter Your genuine Email Id</p>
+                        </div>
+                    </template>
+
+                    <template if:true={badvoter}>
+                        <div class="slds-text-heading_small slds-box slds-theme_error">
+                            <p class="slds-text-align_center">This Email ID is not a registered Voter. Please check with
+                                your Team's Election
+                                Commission.</p>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+            <!-- Error panel Ends -->
+
+            <!-- Email Box to Verify Voter -->
+            <template if:false={voterName}>
+                <lightning-layout multiple-rows="true" horizontal-align="center" vertical-align="center">
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <div style="margin-top:100px" class="slds-p-around_large lgc-bg-inverse">
+                            <p class="slds-text-color_inverse slds-text-heading_small slds-align_absolute-center">Enter
+                                Your Email
+                                id
+                                and
+                                press Enter</p>
+                            <lightning-input class="emailinput slds-m-top_medium" type="email"
+                                placeholder="eg:johndoe@gmail.com" onkeyup={bindCandidateEmail}></lightning-input>
+                            <div>
+                                <lightning-button variant="success"
+                                    class="slds-align_absolute-center slds-p-around_medium" label="Begin Voting"
+                                    title="Begin Voting" onclick={handleBeginVoting} disabled={disablevoting}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            <!-- Email Box ends -->
+
+
+            <!-- Ballot Box Starts -->
+            <template if:true={voterName}>
+                <lightning-layout multiple-rows="true" horizontal-align="center">
+                    <lightning-layout-item size="9" flexibility="auto" padding="around-large" class="lgc-bg-inverse">
+
+                        <!-- Voter Name and Team Name -->
+                        <div class="slds-clearfix slds-m-around_medium">
+                            <div class="slds-clearfix">
+                                <div class="slds-float_left">
+                                    <p class="slds-text-color_inverse slds-text-heading_small">Voter : {voterName}
+                                    </p>
+                                </div>
+                                <div class="slds-float_right">
+                                    <p class="slds-text-color_inverse slds-text-heading_small">Team : {teamName}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- Voter Name and Team Name ends -->
+
+                        <!-- Voting Titles start -->
+                        <lightning-layout multiple-rows="true" horizontal-align="center">
+                            <template if:false={voteCasted}>
+                                <!-- Each Vote Tile starts -->
+                                <template for:each={lBox} for:item="oBox">
+                                    <lightning-layout-item key={oBox.titleId} size="1" flexibility="auto"
+                                        class="slds-m-bottom_x-large">
+                                        <lightning-icon icon-name="standard:reward"></lightning-icon>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item key={oBox.titleId} size="6" flexibility="auto"
+                                        class="slds-m-bottom_x-large">
+                                        <p class="slds-text-color_inverse slds-text-heading_large slds-hyphenate">
+                                            Title : {oBox.titlename}</p>
+                                        <p
+                                            class="slds-text-color_inverse slds-m-top_small slds-text-heading_medium slds-hyphenate">
+                                            <lightning-formatted-rich-text value={oBox.titleDescription}>
+                                            </lightning-formatted-rich-text>
+                                        </p>
+                                    </lightning-layout-item>
+                                    <!-- Options -->
+                                    <lightning-layout-item key={oBox.titleId} size="5" flexibility="auto"
+                                        class="slds-m-bottom_x-large slds-p-horizontal_medium">
+                                        <p class="slds-text-color_inverse slds-text-heading_medium slds-hyphenate">Your
+                                            Vote goes to
+                                            ...
+                                        </p>
+                                        <lightning-combobox class="voteselect" data-titleid={oBox.titleId}
+                                            options={oBox.lOptions} onchange={handleChange}>
+                                        </lightning-combobox>
+                                        <!-- <template if:true={oBox.hasNominees}>
+                                        <lightning-radio-group class="slds-text-color_inverse" data-titleid={oBox.titleId} options={oBox.lOptions}
+                                            onchange={handleChange} type="radio"></lightning-radio-group>
+                                  </template> 
+                                  <template if:false={oBox.hasNominees}> 
+                                        <lightning-combobox class="voteselect" data-titleid={oBox.titleId}
+                                            options={oBox.lOptions} onchange={handleChange}>
+                                        </lightning-combobox>
+                                         </template> -->
+                                    </lightning-layout-item>
+                                </template>
+                                <!-- Each Vote Tile ends -->
+
+
+                                <template if:true={NoMoreVotes}>
+                                    <lightning-layout-item size="5">
+                                        <div
+                                            class="slds-text-heading_small slds-box slds-theme_warning slds-m-around_small">
+                                            <p class="slds-text-align_center">No further Votes to cast! :)</p>
+                                        </div>
+                                    </lightning-layout-item>
+                                </template>
+
+                            </template>
+                        </lightning-layout>
+                        <!-- Voting Titles end -->
+
+                        <template if:true={voteCasted}>
+                            <lightning-layout multiple-rows="true" horizontal-align="center">
+                                <lightning-layout-item size="5">
+                                    <div class="slds-text-heading_small slds-box slds-theme_success">
+                                        <p class="slds-text-align_center">Your Votes have been successfully cast.</p>
+                                        <p class="slds-text-align_center">Thank You for Voting !</p>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                        <hr>
+
+                        <!-- Buttons start -->
+                        <template if:true={showbuttons}>
+                            <template if:true={fillAllAlert}>
+                                <lightning-layout multiple-rows="true" horizontal-align="center">
+                                    <lightning-layout-item size="6" padding="around-medium">
+                                        <div
+                                            class="slds-text-heading_small slds-box slds-theme_warning slds-m-around_small slds-text-align_center">
+                                            <p>Please Cast all Votes before submitting!</p>
+                                        </div>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </template>
+
+                            <lightning-layout multiple-rows="true" horizontal-align="center">
+                                <lightning-layout-item size="6" padding="around-medium">
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-center">
+                                        <div class="slds-col">
+                                            <lightning-button variant="destructive" label="Reset All Votes"
+                                                title="Reset All Votes" icon-name="utility:refresh"
+                                                class="slds-m-left_small" onclick={handleResetVote}>
+                                            </lightning-button>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-button variant="success" label="Submit All Votes"
+                                                title="Submit All Votes" icon-name="utility:approval"
+                                                class="slds-m-left_small" onclick={handleCastVote}>
+                                            </lightning-button>
+                                        </div>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                        <!-- Buttons end -->
+
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            <!-- Ballot Box Ends -->
+
+            <lightning-layout multiple-rows="true" horizontal-align="center" style="margin-top:250px">
+                <lightning-layout-item size="12" flexibility="auto" padding="around-small"
+                    class="lgc-bg-inverse slds-text-color_inverse">
+                    <footer>
+                        <p class="slds-text-align_center slds-text-heading_medium">Made in Salesforce using LWC.
+                            Copyright © <span>{currentYear}</span> Waseem Ali Sabeel
+                        </p>
+                    </footer>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
