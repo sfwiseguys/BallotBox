@@ -54,6 +54,7 @@ The Setup steps are as below-
 
 You can enter your preferred value (say *myballotbox*) & check availability for your domain name and register it.
 If you already have a domain name, click on New button.
+
 3. On the New Site form, give it a Site label & name (say *myBallotBoxSite*) and in the Default Web Addres, form your site URL (say *votenow*)
 4. Mark the Active checkbox True and for the Active Site Home Page, search and select **wbb_votepage** Visualforce page. This will expose the created LWC in Public Site
 5. Keep all other settings as default and Save your new Site.
