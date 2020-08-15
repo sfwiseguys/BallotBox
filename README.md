@@ -42,9 +42,8 @@ The Setup steps are as below-
 
 
 4. If needed, you can create few Nominee records under the Titles so that only they show up as options during Voting and not All the Team Candidates. If no nominees created, then by default, All Candidates will be in the options list for That Title.
-5. You can preview how your configured data looks to an end user (Voter) in the **Vote Now!** tab
+5. You can preview how your configured data looks to an end user (Voter with a Candidate email) in the **Vote Now!** tab.
 6. As an Admin, Configure the Salesforce Site in your Salesforce Org as instructed separately below.
-7. Once Site is configured, you can share the Site Link with Voters and let the fun begin !
 
 ###  Site Setup
 
@@ -55,17 +54,18 @@ The Setup steps are as below-
 You can enter your preferred value (say *myballotbox*) & check availability for your domain name and register it.
 If you already have a domain name, click on New button.
 
-3. On the New Site form, give it a Site label & name (say *myBallotBoxSite*) and in the Default Web Addres, form your site URL (say *votenow*)
-4. Mark the Active checkbox True and for the Active Site Home Page, search and select **wbb_votepage** Visualforce page. This will expose the created LWC in Public Site
+3. On the New Site form, give it a Site label & name (say *MyBallotBoxSite*) and in the Default Web Address, form your site URL (say *votenow*)
+4. Mark the Active checkbox True and for the Active Site Home Page, search and select **wbb_votepage** Visualforce page. This page contains the created LWC to be used for Site
 5. Keep all other settings as default and Save your new Site.
 Based on your values, Your site URL will look something like this- 
-```https:// **myballotbox**-developer-edition.na##.force.com/**votenow**```
+```https:// myballotbox-developer-edition.na##.force.com/votenow```
 6. On the created Site, click on **Public Access Settings** to grant access to your Site's Guest Profile.
 7. Under Profile's Apex Class Access, grant access to *wbb_VoteController* Class
 8. Under Profile's Visualforce Page Access, grant access to *wbb_votepage* VF page
-9. Under Profile's Object Settings, give **Read, View All** access for Candidate, Nominee, Team & Title Objects. Grant All Read FLS
-9. Under Profile's Object Settings, give **Read, Create, Edit** for Vote Object. Grant All Read & Edit FLS
-10. Preview your Site and try casting Votes as guest users now with the appropriate Candidate Email
+9. Under Profile's Object Settings, give **Read, View All** access for Candidate, Nominee, Team & Title Objects. Grant All Read FLS.
+9. Under Profile's Object Settings, give **Read, Create, Edit** for Vote Object. Grant All Read & Edit FLS.
+10. Preview your Site and try casting Votes as guest users now with the appropriate Candidate Email.
+11. Once Site is configured, you can share the Site Link with Voters and let the fun begin ! :sparkles:
 
 ### Deployment
 
