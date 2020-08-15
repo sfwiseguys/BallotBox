@@ -31,12 +31,14 @@ Our recommended Method is to share the Public Salesfore Site URL with the Users 
 
 The Setup steps are as below- 
 1. Either Install [this Unmanaged Package](https://www.google.com) into your Salesforce Org, or follow below Deployment Steps.
-2. In App Launcher, select the **Ballot Box** app to view the Tab contents and create a Team record first, followed by Titles and Candidates. Remember to create Team Candidate records with a Unique Email ID that they will use in the Public Site (created above) to determine their voter identity.
+2. In App Launcher, select the **Ballot Box** app to view the Tab contents and create a Team record first, followed by Titles and Candidates. Remember to create Team Candidate records with a Unique Email ID that they will use in the Public Site to determine their voter identity.
 3. Create Data Records - Team , All Team Candidates, All Team Titles as shown below- 
 
 ![](.images/TitlesListView.png)
 
 ![](.images/CandidateForm.png)
+
+![](.images/IronManQuestion.png)
 
 
 4. If needed, you can create few Nominee records under the Titles so that only they show up as options during Voting and not All the Team Candidates. If no nominees created, then by default, All Candidates will be in the options list for That Title.
@@ -58,26 +60,26 @@ If Unable to Install the unmanaged package, then you can deploy the contents of 
     cd BallotBox
     ```
 
-1. Authorize your org and provide it with an alias (example **mydevorg** in the command below):
+2. Authorize your org and provide it with an alias (example **mydevorg** in the command below):
 
     ```
     sfdx force:auth:web:login -s -a mydevorg
     ```
 
-1. Run this command in a terminal to deploy this app in your Org
+3. Run this command in a terminal to deploy this app in your Org
 
     ```
     sfdx force:source:deploy -p force-app
     ```
 
-1. If your org isn't already open, open it now using this command:
+4. If your org isn't already open, open it now using this command:
 
     ```
     sfdx force:org:open -u mydevorg
 
     ```
 
-1. Post deployment, you can configure the Salesforce Site and the Records as instructed above and let the voting begin!
+5. Post deployment, you can configure the Salesforce Site and the Records as instructed above and let the voting begin!
 
 ---
 
