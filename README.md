@@ -48,6 +48,23 @@ The Setup steps are as below-
 
 ###  Site Setup
 
+1. As a Salesforce Admin, Navigate to Setup-> Sites
+2. If you do not already have a domain name, you'll be prompted to register a domain name first for your Site.
+![](.images/NewSite.png)
+
+You can enter your preferred value (say *myballotbox*) & check availability for your domain name and register it.
+If you already have a domain name, click on New button.
+3. On the New Site form, give it a Site label & name (say *myBallotBoxSite*) and in the Default Web Addres, form your site URL (say *votenow*)
+4. Mark the Active checkbox True and for the Active Site Home Page, search and select **wbb_votepage** Visualforce page. This will expose the created LWC in Public Site
+5. Keep all other settings as default and Save your new Site.
+Based on your values, Your site URL will look something like this- 
+```https:// **myballotbox**-developer-edition.na##.force.com/**votenow**```
+6. On the created Site, click on **Public Access Settings** to grant access to your Site's Guest Profile.
+7. Under Profile's Apex Class Access, grant access to *wbb_VoteController* Class
+8. Under Profile's Visualforce Page Access, grant access to *wbb_votepage* VF page
+9. Under Profile's Object Settings, give **Read, View All** access for Candidate, Nominee, Team & Title Objects. Grant All Read FLS
+9. Under Profile's Object Settings, give **Read, Create, Edit** for Vote Object. Grant All Read & Edit FLS
+10. Preview your Site and try casting Votes as guest users now with the appropriate Candidate Email
 
 ### Deployment
 
