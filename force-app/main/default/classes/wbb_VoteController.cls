@@ -1,6 +1,7 @@
 /**********   Apex Controller for the Ballot Box Vote Now LWC **********/
+// Making Class as without sharing to allow GUEST SITE Users to interact with Data, without enforcing Record Level Security
 
-public with sharing class wbb_VoteController {
+public without sharing class wbb_VoteController {
 
 
     /********** Method to Verify the Candidate EMAIL with a Team's Candidate record for authenticity and return Voter Wrapper **********/
