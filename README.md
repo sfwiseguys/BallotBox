@@ -36,7 +36,7 @@ Along with above result sharing, Salesforce Admin can also view the results in a
 ## Installation & Site Setup
 
 The Setup steps are as below- 
-1. Either Install [this Unmanaged Package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1U0000058aB9) into your Salesforce Org, or follow below Deployment Steps.
+1. Either Install [this Unmanaged Package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1U0000058aBE) into your Salesforce Org, or follow below Deployment Steps.
 2. In App Launcher, select the **Ballot Box** app to view the Tab contents and create a Team record first, followed by Titles and Candidates. Remember to create Team Candidate records with a Unique Email ID that they will use in the Public Site to determine their voter identity.
 3. Create Data Records - Team , Team Candidates, Team Titles as shown below- 
 
@@ -75,7 +75,7 @@ Based on your values, Your site URL will look something like this-
 
 ### Deployment
 
-If you are unable to Install [this Unmanaged Package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1U0000058aB9), then you can deploy the contents of this repository in your Developer Edition Org or a Sandbox-
+If you are unable to Install [this Unmanaged Package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1U0000058aBE), then you can manually deploy the contents of this repository in your Developer Edition Org or a Sandbox-
 
 1. Clone this repository in your local machine:
 
@@ -103,7 +103,7 @@ If you are unable to Install [this Unmanaged Package](https://login.salesforce.c
 
     ```
 
-5. Post deployment, you can configure the Salesforce Site and the Records as instructed above and let the voting begin!
+5. Post deployment, you can configure the Salesforce Site manually and set up the Data Records as instructed above and let the voting begin!
 
 ---
 
