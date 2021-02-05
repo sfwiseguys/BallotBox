@@ -22,7 +22,12 @@ The pre-built Voting rules are -
 - Voter cannot vote for oneself in any of the Titles
 - Few Titles may have a pre-filtered list of *Nominees*, others will display all the Team Members
 
-Our recommendation is to share the Public Salesforce Site URL with the Users all at once to ensure Simultaneous Votes are being cast and the Salesforce Admin can then view the results in a Wall of Fame Ballot Box Dashboard as shown below - 
+Our recommendation is to share the Public Salesforce Site URL with the Users all at once to ensure Simultaneous Votes are being cast.
+After submitting their Vote, voters can see the Live Ballot Result charts against each Title. These get polled every 4 seconds and updates the charts accordingly in real-time, as shown below-
+
+![](.images/ChartUpdate.png)
+
+Along with above result sharing, Salesforce Admin can also view the results in a Wall of Fame Ballot Box Dashboard as shown below - 
 
 ![](.images/DashboardWallOfFame.png)
 
