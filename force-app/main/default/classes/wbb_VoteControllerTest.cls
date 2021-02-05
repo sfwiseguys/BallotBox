@@ -10,7 +10,7 @@ public class wbb_VoteControllerTest {
     public static User getTestingUser() {
 
         String dateString = String.valueof(Datetime.now()).replace(' ', '').replace(':', '').replace('-', '');
-        Integer randomInt = Integer.valueOf(math.rint(math.random() * 1000000));
+        integer randomInt = integer.valueOf(math.rint(math.random() * 1000000));
         String uniqueName = dateString + randomInt;
 
         User u;
@@ -20,7 +20,7 @@ public class wbb_VoteControllerTest {
                      alias = 'uqusr', lastname = 'lastname', emailencodingkey = 'UTF-8', localesidkey = 'en_US',
                      languagelocalekey = 'en_US', timezonesidkey = 'GMT');
         insert u;
-        system.assertNotEquals(NULL, u);
+        system.assertNotEquals(NULL, u,'Assertion Failed for getTestingUser');
         return u;
     }
 
@@ -35,45 +35,45 @@ public class wbb_VoteControllerTest {
 
         Team__c oTeam = new Team__c(Name = 'Test Team');
         insert oTeam;
-        system.assertNotEquals(NULL, oTeam);
+        system.assertNotEquals(NULL, oTeam,'Assertion Failed for oTeam insert');
 
         List<Title__c> lTitle = new List<Title__c>();
-        For(Integer i = 1; i < 5; i++) {
+        for(integer i = 1; i < 5; i++) {
             Title__c oT = new Title__c(Name = 'Test Title ' + i, Team__c = oTeam.Id, Order__c = i, Title_Description__c  = 'Test Description ' + i);
             lTitle.add(oT);
         }
         insert lTitle;
-        system.assertNotEquals(NULL, lTitle);
+        system.assertNotEquals(NULL, lTitle,'Assertion Failed for lTitle insert');
 
         List<Candidate__c > lCan = new List<Candidate__c >();
-        For(Integer i = 1; i < 10; i++) {
+        for(integer i = 1; i < 10; i++) {
             Candidate__c  oCan = new Candidate__c (Name = 'Test Candidate ' + i, Team__c = oTeam.Id, Email__c = 'TestEmail' + i + '@gmail.com');
             lCan.add(oCan);
         }
         insert lCan;
-        system.assertNotEquals(NULL, lCan);
+        system.assertNotEquals(NULL, lCan,'Assertion Failed for lCan insert');
 
         Nominee__c  oNom = new Nominee__c (Title__c  = lTitle[0].id, Candidate__c = lCan[2].id);
         insert oNom;
         oNom = new Nominee__c (Title__c  = lTitle[0].id, Candidate__c = lCan[3].id);
         insert oNom;
-        system.assertNotEquals(NULL, oNom);
+        system.assertNotEquals(NULL, oNom,'Assertion Failed for oNom Insert');
 
     }
 
     /*
-    * @Method Name                    :  test_verifyCandidate
-    * @Description                    :  Method to Test verifyCandidate
+    * @Method Name                    :  test_getTitleBoxes
+    * @Description                    :  Method to Test getTitleBoxes
     * @Return Type                    :  None
     * @Parameters                     :  None
     */
 
-    static testMethod void test_verifyCandidate() {
+    static testMethod void test_getTitleBoxes() {
         User u = getTestingUser();
         System.runAs(u) {
             Test.StartTest();
-            system.assertEquals(wbb_VoteController.verifyCandidate('fail@w.com').voterName, '');
-            system.assertNotEquals(wbb_VoteController.verifyCandidate('TestEmail1@gmail.com').voterName, '');
+            system.assertEquals(wbb_VoteController.getTitleBoxes('fail@w.com').voterName, '','Assertion Failed for wbb_VoteController.getTitleBoxes negative case');
+            system.assertNotEquals(wbb_VoteController.getTitleBoxes('TestEmail1@gmail.com').voterName, '','Assertion Failed for wbb_VoteController.getTitleBoxes positive case');
             Test.StopTest();
         }
     }
@@ -81,7 +81,7 @@ public class wbb_VoteControllerTest {
 
     /*
     * @Method Name                    :  test_castVote
-    * @Description                    :  Method to Test castVote
+    * @Description                    :  Method to Test castVote & fetchVoteCount
     * @Return Type                    :  None
     * @Parameters                     :  None
     */
@@ -101,13 +101,12 @@ public class wbb_VoteControllerTest {
 
         System.runAs(u) {
             Test.StartTest();
-            string voterID = wbb_VoteController.verifyCandidate('TestEmail1@gmail.com').voterID;
-            system.assertNotEquals(wbb_VoteController.castVote(mVote, voterID), NULL);
-            system.assertNotEquals([SELECT id FROM Vote__c LIMIT 100].size(), 0);
-            system.assertNotEquals(wbb_VoteController.verifyCandidate('TestEmail1@gmail.com').lBox, NULL);
+            string voterID = wbb_VoteController.getTitleBoxes('TestEmail1@gmail.com').voterID;
+            system.assertNotEquals(wbb_VoteController.castVote(mVote, voterID), NULL,'Assertion Failed for wbb_VoteController.castVote');
+            system.assertEquals([SELECT id FROM Vote__c LIMIT 100].size(), 3,'Assertion Failed for Vote Size count');
+            system.assertNotEquals(wbb_VoteController.getTitleBoxes('TestEmail1@gmail.com').voterName, '','Assertion Failed for wbb_VoteController.getTitleBoxes positive case');
+            system.assertNotEquals(wbb_VoteController.fetchVoteCount(lTitle[0].id).size(), 0,'Assertion Failed for wbb_VoteController.fetchVoteCount positive case');
             Test.StopTest();
         }
     }
-
-
 }
